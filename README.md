@@ -3,8 +3,8 @@
 ## font installation on void
 
 ```
-xbps-install fonts-iosevka fontmanager
-font-manager SF-Pro-Text-Regular.otf
+# xbps-install fonts-iosevka fontmanager
+# font-manager SF-Pro-Text-Regular.otf
 ```
 
 ## font installation on arch
@@ -12,13 +12,13 @@ font-manager SF-Pro-Text-Regular.otf
 install an aur helper if you havent already:
 
 ```
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si
+# git clone https://aur.archlinux.org/yay.git
+# cd yay
+# makepkg -si
 ```
 
 install fonts
 
 ```
-yay -S apple-fonts ttf-iosevka
+# yay -S apple-fonts ttf-iosevka
 ```
