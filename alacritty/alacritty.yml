@@ -879,31 +879,31 @@ shell:
 
   # Highlight window damage information.
   #highlight_damage: false
-  
-# XTerm's default colors
+
 colors:
   # Default colors
   primary:
     background: '0x000000'
-    foreground: '0xffffff'
+    foreground: '0xdfdfdf'
+
   # Normal colors
   normal:
-    black:   '0x000000'
-    red:     '0xcd0000'
-    green:   '0x00cd00'
-    yellow:  '0xcdcd00'
-    blue:    '0x0000ee'
-    magenta: '0xcd00cd'
-    cyan:    '0x00cdcd'
-    white:   '0xe5e5e5'
+    black:   '0x202020'
+    red:     '0xd04444'
+    green:   '0x8fbb3d'
+    yellow:  '0xfac549'
+    blue:    '0x619bbb'
+    magenta: '0x9463d1'
+    cyan:    '0x67b58d'
+    white:   '0xbbbbbb'
 
   # Bright colors
   bright:
-    black:   '0x7f7f7f'
-    red:     '0xff0000'
-    green:   '0x00ff00'
-    yellow:  '0xffff00'
-    blue:    '0x5c5cff'
-    magenta: '0xff00ff'
-    cyan:    '0x00ffff'
-    white:   '0xffffff'
+    black:   '0x404040'
+    red:     '0xd04444'
+    green:   '0x8fbb3d'
+    yellow:  '0xfac549'
+    blue:    '0x619bbb'
+    magenta: '0x9463d1'
+    cyan:    '0x67b58d'
+    white:   '0x909090'
