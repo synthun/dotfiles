@@ -22,3 +22,5 @@ install fonts
 ```
 yay -S apple-fonts ttf-iosevka
 ```
+
+![image](https://user-images.githubusercontent.com/84999468/175779908-cd971606-f3c9-4315-ad55-5b1a1810644f.png)
