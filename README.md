@@ -16,6 +16,7 @@ mkdir ~/.local/share/fonts
 mv SF-Pro-Text_Regular.otf ~/.local/share/fonts
 mv iosevka-regular.ttf ~/.local/share/fonts
 ```
+iosevka is in the repositories but it is masked
 
 ## font installation on arch
 
