@@ -2,4 +2,4 @@
 
 my configuration files for some programs
 
-![image](https://user-images.githubusercontent.com/84999468/176069951-8a6b8535-7c34-463f-a14b-ca55920be46f.png)
+https://i.redd.it/l31f9ak3b8991.png
