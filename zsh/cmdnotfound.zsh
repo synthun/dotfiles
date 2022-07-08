@@ -1,0 +1,36 @@
+command_not_found_handler () {
+    local saying=(
+        "%F{1}%B%m%f%b: beep boop boop beep beep beep boop, it means you are stupid."
+        "%F{1}%B%m%f%b: i'm considering installing windows on myself."
+        "%F{1}%B%m%f%b: try typing a little bit slowly."
+		"%F{1}%B%m%f%b: you can do it!!!#!@#@!#!#@!#!#"
+        "%F{1}%B%m%f%b: aren't you good at your job?"
+        "%F{1}%B%m%f%b: don't make typos next time"
+		"%F{1}%B%m%f%b: y u no speak computer????"
+        "%F{1}%B%m%f%b: stop being retarded."
+        "%F{1}%B%m%f%b: wtf are you doing?"
+        "%F{1}%B%m%f%b: you suck."
+        "%F{1}%B%m%f%b: you idiot."
+        "%F{1}%B%m%f%b: nice typo."
+		"%F{1}%B%m%f%b: pathetic"
+		"%F{1}%B%m%f%b: RTFM."
+        "%F{1}%B%m%f%b: plz"
+		"%F{1}%B%m%f%b: bad"
+		"%F{5}%B%n%f%b: i thought you were good at this..."
+		"%F{5}%B%n%f%b: stope beinge ze stubid."
+		"%F{5}%B%n%f%b: rip bozo goofy ahh"
+		"%F{5}%B%n%f%b: are you retarded?"
+		"%F{5}%B%n%f%b: i'm dissapointed."
+		"%F{5}%B%n%f%b: rip bozo"
+		"%F{5}%B%n%f%b: u suck"
+		"%F{5}%B%n%f%b: booo."
+		"%F{5}%B%n%f%b: lol"
+        "%F{5}%B%n%f%b: lol"
+        "%F{5}%B%n%f%b: nt"
+		"%F{2}%Bhippoz%f%b: you're the kind of person to use snapchat"
+		"%F{4}%Bno%f%b: nigger faggot jew cunt furfag trans crybaby idiot pussy"
+    )
+	print -P "${saying[$(shuf -n 1 -i 0-${#saying[@]})]}"
+    printf "%s: %s: %s\n" "$SHELL" "command not found" "$1" >&2
+    return 127
+}
