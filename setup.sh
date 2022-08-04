@@ -41,7 +41,7 @@ if [ $distro == 'void' ]; then
 
 	echo
 	echo "installing tools and dependencies"
-	$root xbps-install -y base-devel xorg-server libXft-devel libX11-devel libXinerama-devel git alacritty sxhkd dunst xsetroot nitrogen xauth
+	$root xbps-install -y base-devel xorg-server libXft-devel libX11-devel libXinerama-devel git alacritty sxhkd dunst xsetroot nitrogen xauth xinit
 
 	mkdir -p $HOME/.config && cd $HOME/.config
 	
