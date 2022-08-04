@@ -53,7 +53,12 @@ void_install() {
 	rm -rfv $HOME/.config/dotfiles
 	rm -rfv $HOME/.config/fonts
 
-	echo && echo "installation complete, the configuration files for dwm and dmenu are located in $HOME/.config"
+	read -p "reboot? (optional) (y/n): "
+
+	case $REPLY in
+		y) $root reboot;;
+		n) echo && echo "installation complete, config files for dwm and dmenu located in $HOME/.config";;
+		*) echo && echo "option $REPLY invalid, not rebooting." && echo "installation complete, config files for dwm and dmenu located in $HOME/.config"
 }
 
 case $REPLY in
