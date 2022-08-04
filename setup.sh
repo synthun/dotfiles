@@ -41,7 +41,7 @@ if [ $distro == 'void' ]; then
 
 	echo
 	echo "installing tools and dependencies"
-	$root xbps-install -y base-devel xorg-server libXft-devel libX11-devel libXinerama-devel git alacritty sxhkd dunst xsetroot nitrogen
+	$root xbps-install -y base-devel xorg-server libXft-devel libX11-devel libXinerama-devel git alacritty sxhkd dunst xsetroot nitrogen xauth
 
 	mkdir -p $HOME/.config && cd $HOME/.config
 	
@@ -62,6 +62,14 @@ if [ $distro == 'void' ]; then
 	cp -r $config/dotfiles/dunst $config
 	cp -r $config/dotfiles/sxhkd $config
 	cp $config/dotfiles/xinitrc $HOME/.xinitrc
+	
+	cd $config
+	
+	git clone https://github.com/synthun/fonts
+	mkdir -p $HOME/.local/share/fonts
+	cd fonts
+	cp jetbrains-mono/* $HOME/.local/share/fonts
+	cp san-francisco/* $HOME/.local/share/fonts
 else
 	echo "$distro does not exist"
 fi
