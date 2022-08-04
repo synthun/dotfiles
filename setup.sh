@@ -33,6 +33,11 @@ void_install() {
         mkdir -p $HOME/.config
         mkdir -p $HOME/.local/share/fonts/
 
+	rm -rfv $HOME/.config/dmenu
+	rm -rfv $HOME/.config/dwm
+	rm -rfv $HOME/.config/dotfiles
+	rm -rfv $HOME/.config/fonts
+
         git clone https://github.com/synthun/dwm $HOME/.config
         git clone https://github.com/synthun/dmenu $HOME/.config
         git clone https://github.com/synthun/dotfiles $HOME/.config
