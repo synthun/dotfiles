@@ -1,75 +1,62 @@
 #!/bin/bash
 
-echo "!! THIS SCRIPT IS A WORK IN PROGRESS AND IS NOT GUARANTEED TO WORK !!"
-echo
+# check if user has sudo or doas installed
 
-# check if user has doas or sudo installed
+if [ ! -e /bin/doas ] && [ -e /bin/sudo ]; then
+	root=sudo
+elif [ ! -e /bin/sudo ] && [ -e /bin/doas ]; then
+	root=doas
+elif [ -e /bin/sudo ] && [ -e /bin/doas ]; then
+	echo "both sudo and doas are installed in the system or symlink exists."
+	read -p "select a binary (sudo, doas): " sord
 
-if [ -x "$(command -v /bin/sudo)" ]; then
-	root='sudo'
+	case $sord in
+		sudo) root=sudo ;;
+		doas) root=doas ;;
+		*) echo "error: binary $sord does not exist" && exit
+	esac
 fi
 
-if [ -x "$(command -v /bin/doas)" ]; then
-	root='doas'
-fi
+echo && echo "using $root" && echo
 
-if [ -x "$(command -v /bin/doas)" -a -x "$(command -v /bin/sudo)" ]; then
-	echo "both doas and sudo are installed on the system or symlink exists."
-	read -p "use sudo? (y/n): " usesudo
+echo "what distro are you on (supported options: void)"
+read -p "enter here: "
 
-	if [ $usesudo == 'y' ]; then
-		root='sudo'
-	elif [ $usesudo == 'n' ]; then
-		root='doas'
-	else
-		echo "option $usesudo is invalid"
-	fi
-fi
+void_install() {
+	echo && echo "updating before installation" && echo && sleep 1s
+        $root xbps-install -y -Su
 
-echo using $root
-echo
+        echo && echo "installing required packages" && echo & sleep 1s
+        $root xbps-install -y xorg-server base-devel alacritty dunst sxhkd git libX11-devel libXft-devel libXinerama-devel xinit xauth xsetroot xinput libinput xf86-input-libinput
 
-# installation
+        echo && echo "starting setup" && echo & sleep 1s
+        mkdir -p $HOME/.config
+        mkdir -p $HOME/.local/share/fonts/
 
-echo "available options: void"
-read -p "enter your distro: " distro
+        git clone https://github.com/synthun/dwm $HOME/.config
+        git clone https://github.com/synthun/dmenu $HOME/.config
+        git clone https://github.com/synthun/dotfiles $HOME/.config
+        git clone https://github.com/synthun/fonts $HOME/.config
 
-if [ $distro == 'void' ]; then
-	echo
-	echo "updating system before beginning installation..."
-	$root xbps-install -y -Su
+        cd $HOME/.config/dwm && $root make clean install
+        cd $HOME/.config/dmenu && $root make clean install
 
-	echo
-	echo "installing tools and dependencies"
-	$root xbps-install -y base-devel xorg-server libXft-devel libX11-devel libXinerama-devel git alacritty sxhkd dunst xsetroot nitrogen xauth xinit
+        cp -r $HOME/.config/dotfiles/sxhkd $HOME/.config
+        cp -r $HOME/.config/dotfiles/dunst $HOME/.config
+        cp -r $HOME/.config/dotfiles/alacritty $HOME/.config
+        cp $HOME/.config/dotfiles/xinitrc $HOME/.xinitrc
 
-	mkdir -p $HOME/.config && cd $HOME/.config
-	
-	config=$HOME/.config
+	cp $HOME/.config/fonts/jetbrains-mono/* $HOME/.local/share/fonts
+	cp $HOME/.config/fonts/san-francisco/* $HOME/.local/share/fonts
 
-	git clone https://github.com/synthun/dwm
-	git clone https://github.com/synthun/dotfiles
-	git clone https://github.com/synthun/fonts
-	git clone https://github.com/synthun/dmenu
+	echo && echo "cleaning up" && echo & sleep 1s
+	rm -rfv $HOME/.config/dotfiles
+	rm -rfv $HOME/.config/fonts
 
-	cd $config/dwm
-	$root make clean install
-	
-	cd $config/dmenu
-	$root make clean install
+	echo && echo "installation complete, the configuration files for dwm and dmenu are located in $HOME/.config"
+}
 
-	cp -r $config/dotfiles/alacritty $config
-	cp -r $config/dotfiles/dunst $config
-	cp -r $config/dotfiles/sxhkd $config
-	cp $config/dotfiles/xinitrc $HOME/.xinitrc
-	
-	cd $config
-	
-	git clone https://github.com/synthun/fonts
-	mkdir -p $HOME/.local/share/fonts
-	cd fonts
-	cp jetbrains-mono/* $HOME/.local/share/fonts
-	cp san-francisco/* $HOME/.local/share/fonts
-else
-	echo "$distro does not exist"
-fi
+case $REPLY in
+	void) void_install;;
+	*) echo "$REPLY does not exist or is not supported"
+esac
