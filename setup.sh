@@ -38,10 +38,10 @@ void_install() {
 	rm -rfv $HOME/.config/dotfiles
 	rm -rfv $HOME/.config/fonts
 
-        git clone https://github.com/synthun/dwm $HOME/.config
-        git clone https://github.com/synthun/dmenu $HOME/.config
-        git clone https://github.com/synthun/dotfiles $HOME/.config
-        git clone https://github.com/synthun/fonts $HOME/.config
+        git clone https://github.com/synthun/dwm $HOME/.config/dwm
+        git clone https://github.com/synthun/dmenu $HOME/.config/dmenu
+        git clone https://github.com/synthun/dotfiles $HOME/.config/dotfiles
+        git clone https://github.com/synthun/fonts $HOME/.config/fonts
 
         cd $HOME/.config/dwm && $root make clean install
         cd $HOME/.config/dmenu && $root make clean install
