@@ -65,7 +65,7 @@ case $distro in
 				rm -v $HOME/.xinitrc
 				mkdir -pv $HOME/.local/share/xinitman/dwm
 				cp -v $HOME/.config/dotfiles/xinitrc $HOME/.xinitrc
-			elif [ ! -e $HOME/.xinitrc ]; then
+			else
 				mkdir -pv $HOME/.local/share/xinitman/dwm
 				cp -v $HOME/.config/dotfiles/xinitrc $HOME/.xinitrc
 			fi
