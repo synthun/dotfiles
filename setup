@@ -48,13 +48,19 @@ case $distro in
 		git clone https://github.com/synthun/dotfiles
 		git clone https://github.com/synthun/dmenu
 
-		cp -rv dotfiles/alacritty .
-		cp -rv dotfiles/sxhkd .
-		cp -rv dotfiles/dunst .
+		cd $config/dwm
+		$root make clean install
+
+		cd $config/dmenu
+		$root make clean install
+
+		cp -rv $config/dotfiles/alacritty $config
+		cp -rv $config/dotfiles/sxhkd $config
+		cp -rv $config/dotfiles/dunst $config
 		
 		mkdir -pv $HOME/.local/share/fonts
-		cp dotfiles/fonts/jetbrains-mono/* $HOME/.local/share/fonts/
-		cp dotfiles/fonts/san-francisco/* $HOME/.local/share/fonts/
+		cp $config/dotfiles/fonts/jetbrains-mono/* $HOME/.local/share/fonts/
+		cp $config/dotfiles/fonts/san-francisco/* $HOME/.local/share/fonts/
 
 		if [ xinitman=true ]; then
 			cd && wget https://raw.githubusercontent.com/synthun/xinitman/main/xinitman
