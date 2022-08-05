@@ -61,13 +61,14 @@ case $distro in
 		cp $HOME/.config/dotfiles/fonts/san-francisco/* $HOME/.local/share/fonts/
 
 		if [ xinitman=true ]; then
-			cd && wget https://raw.githubusercontent.com/synthun/xinitman/main/xinitman
-			$root mv xinitman /bin/xinitman
-			$root chmod +x /bin/xinitman
-
-			mkdir -pv $HOME/.local/share/xinitman/dwm
-			cp -v $config/dotfiles/xinitrc $HOME/.local/share/xinitman/dwm/.xinitrc
-			cp -v $config/dotfiles/xinitrc $HOME/.xinitrc
+			if [ -e $HOME/.xinitrc ]; then
+				rm -v $HOME/.xinitrc
+				mkdir -pv $HOME/.local/share/xinitman/dwm
+				cp -v $HOME/.config/dotfiles/xinitrc $HOME/.xinitrc
+			else
+				mkdir -pv $HOME/.local/share/xinitman/dwm
+				cp -v $HOME/.config/dotfiles/xinitrc $HOME/.xinitrc
+			fi
 		elif [ xinitman=false ]; then
 			if [ -e $HOME/.xinitrc ]; then
 				rm -rfv $HOME/.xinitrc
