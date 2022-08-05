@@ -24,7 +24,7 @@ read -p "distro you are on: " distro
 
 read -p "would you like to install xinitman (https://github.com/synthun/xinitman) with the installation? (y/n): " xinitman
 
-case $REPLY in
+case xinitman in
 	y) xinitman=true;;
 	n) xinitman=false;;
 	*) echo "option $REPLY is invalid" && exit
