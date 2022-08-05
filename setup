@@ -86,7 +86,7 @@ case $distro in
 			false) echo && echo "installation finished"
 		esac
 
-		read -p "reboot system? (optional) (y/n):"
+		read -p "reboot system? (optional) (y/n): "
 
 		case $REPLY in
 			y) $root reboot;;
