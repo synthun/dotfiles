@@ -32,35 +32,33 @@ esac
 
 case $distro in
 	void) {
-		$config=$HOME/.config
-		
 		echo "root privelages are required to update the system before installation"
 		$root xbps-install -Syu
 
 		echo "root privelages are required to install the required dependencies"
-		$root xbps-install -y xorg-server base-devel alacritty dunst sxhkd git libX11-devel libXft-devel libXinerama-devel xinit xauth xsetroot xinput libinput xf86-input-libinput
+		$root xbps-install -y xorg-server base-devel alacritty dunst sxhkd git libX11-devel libXft-devel libXinerama-devel xinit xauth xsetroot xinput libinput wget xf86-input-libinput
 
 		echo "beginning setup" && sleep 1s
 
-		mkdir -pv $config && cd $config
+		mkdir -pv $HOME/.config && cd $HOME/.config
 
 		git clone https://github.com/synthun/dwm
 		git clone https://github.com/synthun/dotfiles
 		git clone https://github.com/synthun/dmenu
 
-		cd $config/dwm
+		cd $HOME/.config/dwm
 		$root make clean install
 
-		cd $config/dmenu
+		cd $HOME/.config/dmenu
 		$root make clean install
 
-		cp -rv $config/dotfiles/alacritty $config
-		cp -rv $config/dotfiles/sxhkd $config
-		cp -rv $config/dotfiles/dunst $config
+		cp -rv $HOME/.config/dotfiles/alacritty $HOME/.config
+		cp -rv $HOME/.config/dotfiles/sxhkd $HOME/.config
+		cp -rv $HOME/.config/dotfiles/dunst $HOME/.config
 		
 		mkdir -pv $HOME/.local/share/fonts
-		cp $config/dotfiles/fonts/jetbrains-mono/* $HOME/.local/share/fonts/
-		cp $config/dotfiles/fonts/san-francisco/* $HOME/.local/share/fonts/
+		cp $HOME/.config/dotfiles/fonts/jetbrains-mono/* $HOME/.local/share/fonts/
+		cp $HOME/.config/dotfiles/fonts/san-francisco/* $HOME/.local/share/fonts/
 
 		if [ xinitman=true ]; then
 			cd && wget https://raw.githubusercontent.com/synthun/xinitman/main/xinitman
@@ -81,7 +79,7 @@ case $distro in
 
 		echo && echo "cleaning up" && sleep 1s
 
-		rm -rfv $config/dotfiles
+		rm -rfv $HOME/.config/dotfiles
 
 		case $xinitman in
 			true) echo && echo "installation finished, new xinitman preset has been created and set to the current ~/.xinitrc";;
