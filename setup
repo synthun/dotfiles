@@ -42,6 +42,14 @@ case $distro in
 
 		mkdir -pv $HOME/.config && cd $HOME/.config
 
+		if [ -d $HOME/.config/dwm ]; then
+			rm -rfv $HOME/.config/dwm
+		elif [ -d $HOME/.config/dotfiles ]; then
+			rm -rfv $HOME/.config/dotfiles
+		elif [ -d $HOME/.config/dmenu]; then
+			rm -rfv $HOME/.config/dmenu
+		fi
+
 		git clone https://github.com/synthun/dwm
 		git clone https://github.com/synthun/dotfiles
 		git clone https://github.com/synthun/dmenu
