@@ -1,6 +1,6 @@
 # screenshotting utility
 Print
-  flameshot gui
+	scrot -f -s
 
 # media keys
 XF86AudioPlay
