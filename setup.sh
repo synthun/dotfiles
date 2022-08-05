@@ -64,6 +64,7 @@ void_install() {
 		y) $root reboot;;
 		n) echo && echo "installation complete, config files for dwm and dmenu located in $HOME/.config";;
 		*) echo && echo "option $REPLY invalid, not rebooting." && echo "installation complete, config files for dwm and dmenu located in $HOME/.config"
+	esac
 }
 
 case $REPLY in
