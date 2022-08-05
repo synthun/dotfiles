@@ -73,11 +73,11 @@ case $distro in
 				rm -v $HOME/.xinitrc
 				mkdir -pv $HOME/.local/share/xinitman/dwm
 				cp -v $HOME/.config/dotfiles/xinitrc $HOME/.xinitrc
-				cat $HOME/.config/dotfiles/xinitrc < $HOME/.local/share/xinitman/dwm/.xinitrc
+				cp -v $HOME/.config/dotfiles/xinitrc $HOME/.local/share/xinitman/dwm/.xinitrc
 			elif [ ! -e $HOME/.xinitrc ]; then
 				mkdir -pv $HOME/.local/share/xinitman/dwm
 				cp -v $HOME/.config/dotfiles/xinitrc $HOME/.xinitrc
-				cat $HOME/.config/dotfiles/xinitrc < $HOME/.local/share/xinitman/dwm/.xinitrc
+				cp -v $HOME/.config/dotfiles/xinitrc $HOME/.local/share/xinitman/dwm/.xinitrc
 			fi
 		elif [ xinitman=false ]; then
 			if [ -e $HOME/.xinitrc ]; then
