@@ -22,9 +22,9 @@ fi
 echo "supported options: void"
 read -p "distro you are on: " distro
 
-read -p "would you like to install xinitman (https://github.com/synthun/xinitman) with the installation? (y/n): " xinitman
+read -p "would you like to install xinitman (https://github.com/synthun/xinitman) with the installation? (y/n): "
 
-case xinitman in
+case $REPLY in
 	y) xinitman=true;;
 	n) xinitman=false;;
 	*) echo "option $REPLY is invalid" && exit
