@@ -1,0 +1,94 @@
+#!/bin/bash
+
+if [ -e /bin/sudo ] && [ ! -e /bin/doas ]; then
+	root=sudo
+elif [ -e /bin/doas ] && [ ! -e /bin/sudo ]; then
+	root=doas
+elif [ -e /bin/sudo ] && [ -e /bin/doas ]; then
+	echo "both sudo and doas are detected on the system or symlink exists."
+	read -p "use doas? (y/n): "
+
+	case $REPLY in
+		y) root=doas;;
+		n) root=sudo;;
+		*) echo "option $REPLY invalid" && exit
+	esac
+else
+	echo "sudo or doas are not installed on the system."
+	prompt -p "binary to use: "
+	root=$REPLY
+fi
+
+echo "supported options: void"
+read -p "distro you are on: " distro
+
+read -p "would you like to install xinitman (https://github.com/synthun/xinitman) with the installation? (y/n): " xinitman
+
+case $REPLY in
+	y) xinitman=true;;
+	n) xinitman=false;;
+	*) echo "option $REPLY is invalid" && exit
+esac
+
+case $distro in
+	void) {
+		$config=$HOME/.config
+		
+		echo "root privelages are required to update the system before installation"
+		$root xbps-install -Syu
+
+		echo "root privelages are required to install the required dependencies"
+		$root xbps-install -y xorg-server base-devel alacritty dunst sxhkd git libX11-devel libXft-devel libXinerama-devel xinit xauth xsetroot xinput libinput xf86-input-libinput
+
+		echo "beginning setup" && sleep 1s
+
+		mkdir -pv $config && cd $config
+
+		git clone https://github.com/synthun/dwm
+		git clone https://github.com/synthun/dotfiles
+		git clone https://github.com/synthun/dmenu
+
+		cp -rv dotfiles/alacritty .
+		cp -rv dotfiles/sxhkd .
+		cp -rv dotfiles/dunst .
+		
+		mkdir -pv $HOME/.local/share/fonts
+		cp dotfiles/fonts/jetbrains-mono/* $HOME/.local/share/fonts/
+		cp dotfiles/fonts/san-francisco/* $HOME/.local/share/fonts/
+
+		if [ xinitman=true ]; then
+			cd && wget https://raw.githubusercontent.com/synthun/xinitman/main/xinitman
+			$root mv xinitman /bin/xinitman
+			$root chmod +x /bin/xinitman
+
+			mkdir -pv $HOME/.local/share/xinitman/dwm
+			cp -v $config/dotfiles/xinitrc $HOME/.local/share/xinitman/dwm/.xinitrc
+			cp -v $config/dotfiles/xinitrc $HOME/.xinitrc
+		elif [ xinitman=false ]; then
+			if [ -e $HOME/.xinitrc ]; then
+				rm -rfv $HOME/.xinitrc
+				cp -v $config/dotfiles/xinitrc $HOME/.xinitrc
+			else
+				cp -v $config/dotfiles/xinitrc $HOME/.xinitrc
+			fi
+		fi
+
+		echo && echo "cleaning up" && sleep 1s
+
+		rm -rfv $config/dotfiles
+
+		case $xinitman in
+			true) echo && echo "installation finished, new xinitman preset has been created and set to the current ~/.xinitrc";;
+			false) echo && echo "installation finished"
+		esac
+
+		read -p "reboot system? (optional) (y/n):"
+
+		case $REPLY in
+			y) $root reboot;;
+			n) exit;;
+			*) echo "option $REPLY invalid, not rebooting" && exit
+		esac
+	};;
+	*) echo "option $distro is invalid" && exit
+esac
