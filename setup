@@ -38,7 +38,7 @@ case $distro in
 		echo "root privelages are required to install the required dependencies"
 		$root xbps-install -y xorg-server base-devel alacritty dunst sxhkd git libX11-devel libXft-devel libXinerama-devel xinit xauth xsetroot xinput libinput wget xf86-input-libinput
 
-		echo "beginning setup" && sleep 1s
+		echo "beginning setup"
 
 		mkdir -pv $HOME/.config && cd $HOME/.config
 
@@ -88,7 +88,7 @@ case $distro in
 			fi
 		fi
 
-		echo && echo "cleaning up" && sleep 1s
+		echo "cleaning up"
 
 		rm -rfv $HOME/.config/dotfiles
 
