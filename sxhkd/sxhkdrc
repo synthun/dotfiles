@@ -1,6 +1,6 @@
 # screenshotting utility
 Print
-	scrot -f -s
+	scrot -q 80 -s -f -z -e 'xclip -selection clipboard -t image/png -i $f; rm -rf $f'
 
 # media keys
 XF86AudioPlay
