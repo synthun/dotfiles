@@ -1,8 +1,8 @@
 #!/bin/sh
 
-[ ! -d $HOME/.config ] && mkdir -v $HOME/.config
-[ ! -d $HOME/.local/share/fonts ] && mkdir -v $HOME/.share/fonts
-[ ! -d $HOME/.local/src ] && mkdir -v $HOME/.local/src
+[ ! -d $HOME/.config ] && mkdir -pv $HOME/.config
+[ ! -d $HOME/.local/share/fonts ] && mkdir -pv $HOME/.local/share/fonts
+[ ! -d $HOME/.local/src ] && mkdir -pv $HOME/.local/src
 
 [ -d $HOME/.config/dunst ] && rm -rfv $HOME/.config/dunst ; cp -rv dunst $HOME/.config || cp -rv dunst $HOME/.config
 [ -d $HOME/.config/sx ] && rm -rfv $HOME/.config/sx ; cp -rv sx $HOME/.config || cp -rv sx $HOME/.config
