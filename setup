@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 [ ! -d $HOME/.config ] && mkdir -pv $HOME/.config
 [ ! -d $HOME/.local/share/fonts ] && mkdir -pv $HOME/.local/share/fonts
@@ -9,3 +9,29 @@
 [ -f $HOME/.yashrc ] && rm -rfv $HOME/.yashrc && cp -v yashrc $HOME/.yashrc || cp -v yashrc $HOME/.yashrc
 
 cp -v fonts/jetbrains-mono/* $HOME/.local/share/fonts
+
+suckless() { 
+	[ ! -f /bin/git ] && echo "error: git not installed" && exit
+	[ ! -d $HOME/.local/src ] && mkdir -pv $HOME/.local/src
+	
+	[ -d $HOME/.local/src/dwm ] && rm -rfv $HOME/.local/src/dwm
+	[ -d $HOME/.local/src/dmenu ] && rm -rfv $HOME/.local/src/dmenu
+	[ -d $HOME/.local/src/st ] && rm -rfv $HOME/.local/src/st
+
+	cd $HOME/.local/src
+
+	git clone https://github.com/synthun/dwm
+	git clone https://github.com/synthun/dmenu
+	git clone https://github.com/wael444/st
+
+	echo "root privelages are required to compile"
+	cd dwm ; su -c 'make clean install' && cd .. || exit
+	cd dmenu ; su -c 'make clean install' && cd .. || exit
+	cd st ; su -c 'make clean install' && cd .. || exit
+}
+
+read -p "install suckless? (y/n): "
+case $REPLY in
+	y) suckless;;
+	n) exit
+esac
