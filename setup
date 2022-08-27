@@ -23,7 +23,7 @@ suckless() {
 
 	git clone https://github.com/synthun/dwm
 	git clone https://github.com/synthun/dmenu
-	git clone https://github.com/wael444/st
+	git clone https://github.com/synthun/st
 
 	echo "root privelages are required to compile"
 	cd dwm ; su -c 'make clean install' && cd .. || exit
