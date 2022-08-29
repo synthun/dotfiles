@@ -12,18 +12,17 @@
 cp -v fonts/jetbrains-mono/* $HOME/.local/share/fonts
 
 suckless() { 
-	[ ! -f /bin/git ] && echo "error: git not installed" && exit
 	[ ! -d $HOME/.local/src ] && mkdir -pv $HOME/.local/src
 	
 	[ -d $HOME/.local/src/dwm ] && rm -rfv $HOME/.local/src/dwm
 	[ -d $HOME/.local/src/dmenu ] && rm -rfv $HOME/.local/src/dmenu
 	[ -d $HOME/.local/src/st ] && rm -rfv $HOME/.local/src/st
 
-	cd $HOME/.local/src
+	cd $HOME/.local/src &&
 
-	git clone https://github.com/synthun/dwm
-	git clone https://github.com/synthun/dmenu
-	git clone https://github.com/synthun/st
+	git clone https://github.com/synthun/dwm &&
+	git clone https://github.com/synthun/dmenu &&
+	git clone https://github.com/synthun/st &&
 
 	echo "root privelages are required to compile"
 	cd dwm ; su -c 'make clean install' && cd .. || exit
