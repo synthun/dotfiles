@@ -10,7 +10,7 @@ $ chmod +x setup
 $ ./setup
 ```
 
-## dependencies
+## dependencies (only for installing suckless)
 
 git
 
