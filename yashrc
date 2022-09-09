@@ -3,7 +3,7 @@ bindkey --emacs '\^L' clear-and-redraw-all
 HISTFILE=${XDG_CACHE_HOME:=$HOME/.cache}/yash_history
 HISTSIZE=8192
 
-export EDITOR=nvim
+export EDITOR=vis
 
 alias ls='ls -FASp --group-directories-first --color=always'
 alias la='ls -lhn'
