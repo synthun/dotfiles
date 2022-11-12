@@ -1,28 +1,22 @@
 # dotfiles
 
-my configuration files for some programs
+my configuration files
 
-## setup
-
-installing suckless software is optional, however when installed the source for the programs is automatically cloned and compiled to `~/.local/src/`
+## installation
 
 ```
-$ git clone https://github.com/synthun/dotfiles
-$ cd dotfiles
-$ chmod +x setup
-$ ./setup
+git clone https://github.com/synthun/dotfiles
+cd dotfiles
+./setup.sh
 ```
 
-## suckless configs
+## yash config
 
-- [dwm](https://github.com/synthun/dwm)
-- [dmenu](https://github.com/synthun/dmenu)
-- [st](https://github.com/synthun/dwm)
+the binary i use for yash is in `~/.local/bin/yash-run` and the config is in `~/.config/yash/rc`, just for the sake of keeping a clean home folder
 
-## dependencies (only for installing suckless)
+to set it to your main shell, run:
 
-git
-
-gcc (might run into errors using other cc compilers)
-
-![image](https://user-images.githubusercontent.com/84999468/190913285-a70ca364-6c8a-494d-aaea-88f026af6ae1.png)
+```
+# echo "/home/your-user/.local/bin/yash-run" >> /etc/shells
+$ chsh -s ~/.local/bin/yash-run
+```
