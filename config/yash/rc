@@ -1,0 +1,16 @@
+PS1='${PWD//$HOME/\~} $ '
+set -o emacs
+bindkey --emacs '\^L' clear-and-redraw-all
+HISTFILE=${XDG_CACHE_HOME:=$HOME/.cache}/yash_history
+HISTSIZE=8192
+
+export PATH=$PATH:$HOME/.local/bin
+
+alias ls='ls -FASp --group-directories-first --color=always'
+alias la='ls -lhn'
+alias df='df -Th'
+alias du='du -h'
+alias da='du -sc'
+alias rm='rm -v'
+alias md='mkdir -pv'
+alias rf='rm -rf'
