@@ -1,5 +1,5 @@
 #!/bin/sh
 # thanks https://codeberg.org/wael/dotfiles
 
-exec /bin/yash \
+exec /usr/bin/yash \
 	--rcfile=/home/kai/.config/yash/rc "$@"
