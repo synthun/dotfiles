@@ -13,6 +13,7 @@ mkd() { mkdir -pv $1 || exit 1 ; }
 [ -d "$CONFIG/sx" ] && del "$CONFIG/sx"
 [ ! -d $FONTSDIR ] && mkd $FONTSDIR
 [ ! -d $BINDIR ] && mkd $BINDIR
+[ ! -d $CONFIG ] && mkd $CONFIG
 
 copy "config/*" $CONFIG
 copy "fonts/*" $FONTSDIR
