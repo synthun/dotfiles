@@ -11,6 +11,7 @@ mkd() { mkdir -pv $1 || exit 1 ; }
 [ -d "$CONFIG/dunst" ] && del "$CONFIG/dunst"
 [ -d "$CONFIG/sxhkd" ] && del "$CONFIG/sxhkd"
 [ -d "$CONFIG/sx" ] && del "$CONFIG/sx"
+[ -d "$CONFIG/yash" ] && del "$CONFIG/yash"
 [ ! -d $FONTSDIR ] && mkd $FONTSDIR
 [ ! -d $BINDIR ] && mkd $BINDIR
 [ ! -d $CONFIG ] && mkd $CONFIG
