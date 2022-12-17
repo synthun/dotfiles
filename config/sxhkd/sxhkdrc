@@ -3,11 +3,5 @@ Print
 	scrot -f -s -z -e 'xclip -selection clipboard -t image/png -i $f; rm -rf $f'
 
 # media keys
-XF86AudioPlay
-	playerctl play-pause
-
-XF86AudioNext
-	playerctl next
-
-XF86AudioPrev
-	playerctl previous
+{XF86AudioPlay,XF86AudioNext,XF86AudioPrev}
+	playerctl {play-pause,next,previous}
